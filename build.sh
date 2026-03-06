@@ -1,8 +1,11 @@
 #!/bin/bash
 set -e
 
-# Install dioxus-cli
-cargo install dioxus-cli
+# Ensure Rust bin directory is in PATH
+export PATH="$HOME/.cargo/bin:$PATH:/rust/bin"
 
-# Build for web
-dioxus build --release --target web
+# Install dioxus-cli if not already installed
+cargo install dioxus-cli || echo "dioxus-cli already installed"
+
+# Build for web using the binary
+dx build --release --target web
