@@ -9,7 +9,7 @@ use dioxus::prelude::*;
 pub fn Footer() -> Element {
     rsx! {
 
-        div { class: "w-screen flex md:flex-row justify-between",
+        div { class: "w-screen p-[12%] flex md:flex-row justify-between",
                 div { class: "w-full",
                         h5 { "Company" }
                         // about us

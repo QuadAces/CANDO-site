@@ -5,5 +5,5 @@
 mod hero;
 pub use hero::Hero;
 
-mod whatwedo;
-pub use whatwedo::WhatWeDo;
+mod about;
+pub use about::About;
