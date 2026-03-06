@@ -1,4 +1,4 @@
-use crate::Route;
+use crate::{Route, views::Footer};
 use dioxus::prelude::*;
 
 const NAVBAR_CSS: Asset = asset!("/assets/styling/navbar.css");
@@ -13,7 +13,7 @@ pub fn Navbar() -> Element {
     rsx! {
         document::Link { rel: "stylesheet", href: NAVBAR_CSS }
 
-        div { id: "navbar", class: "fixed",
+        div { id: "navbar", class: "fixed w-screen bg-black",
             Link { to: Route::Home {}, "CANDO" }
             Link { to: Route::Blog { id: 1 }, "What we do" }
             Link { to: "#gratagrim", "How does it work?" }
@@ -22,5 +22,6 @@ pub fn Navbar() -> Element {
         // The `Outlet` component is used to render the next component inside the layout. In this case, it will render either
         // the [`Home`] or [`Blog`] component depending on the current route.
         Outlet::<Route> {}
+        Footer {}
     }
 }
