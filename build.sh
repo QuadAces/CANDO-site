@@ -8,4 +8,4 @@ export PATH="$HOME/.cargo/bin:$PATH:/rust/bin"
 cargo install dioxus-cli || echo "dioxus-cli already installed"
 
 # Build for web using the binary
-dx build --release --target web
+dx build --web --release 
