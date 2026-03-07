@@ -7,3 +7,6 @@ pub use hero::Hero;
 
 mod about;
 pub use about::About;
+
+mod faq;
+pub use faq::FAQ;
