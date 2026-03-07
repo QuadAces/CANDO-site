@@ -1,27 +1,97 @@
-use crate::{Route, views::Footer};
+use crate::{views::Footer, Route};
 use dioxus::prelude::*;
 
 const NAVBAR_CSS: Asset = asset!("/assets/styling/navbar.css");
 
-/// The Navbar component that will be rendered on all pages of our app since every page is under the layout.
-///
-///
-/// This layout component wraps the UI of [Route::Home] and [Route::Blog] in a common navbar. The contents of the Home and Blog
-/// routes will be rendered under the outlet inside this component
 #[component]
 pub fn Navbar() -> Element {
     rsx! {
         document::Link { rel: "stylesheet", href: NAVBAR_CSS }
 
-        div { id: "navbar", class: "fixed w-screen bg-black",
-            Link { to: Route::Home {}, "CANDO" }
-            Link { to: Route::Blog { id: 1 }, "What we do" }
-            Link { to: "#gratagrim", "How does it work?" }
-        }
+        div { class: "drawer",
 
-        // The `Outlet` component is used to render the next component inside the layout. In this case, it will render either
-        // the [`Home`] or [`Blog`] component depending on the current route.
-        Outlet::<Route> {}
-        Footer {}
+            input {
+                id: "nav-drawer",
+                r#type: "checkbox",
+                class: "drawer-toggle",
+            }
+
+            div { class: "drawer-content flex flex-col",
+
+                // Top Navbar
+                div { class: "navbar bg-black text-white w-full px-6",
+
+                    // Mobile menu button
+                    div { class: "flex-none lg:hidden",
+                        label {
+                            r#for: "nav-drawer",
+                            class: "btn btn-square btn-ghost",
+                            aria_label: "open sidebar",
+
+                            svg {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                fill: "none",
+                                view_box: "0 0 24 24",
+                                class: "inline-block h-6 w-6 stroke-current",
+
+                                path {
+                                    stroke_linecap: "round",
+                                    stroke_linejoin: "round",
+                                    stroke_width: "2",
+                                    d: "M4 6h16M4 12h16M4 18h16",
+                                }
+                            }
+                        }
+                    }
+
+                    // Logo
+                    div { class: "flex-1 px-2 text-xl font-bold",
+                        Link { to: Route::Home {}, "CANDO" }
+                    }
+
+                    // Desktop menu
+                    div { class: "hidden lg:flex flex-none",
+                        ul { class: "menu menu-horizontal gap-6",
+
+                            li {
+                                a { href: "/#about", "About us" }
+                            }
+                            li {
+                                Link { to: Route::Blog { id: 1 }, "How does it work?" }
+                            }
+                        }
+                    }
+                }
+
+                // Page content
+                Outlet::<Route> {}
+                Footer {}
+            }
+
+            // Mobile drawer sidebar
+            div { class: "drawer-side",
+
+                label {
+                    r#for: "nav-drawer",
+                    class: "drawer-overlay",
+                    aria_label: "close sidebar",
+                }
+
+                ul { class: "menu bg-black text-white min-h-full w-80 p-6 gap-4",
+
+                    li {
+                        Link { to: Route::Home {}, "Home" }
+                    }
+
+                    li {
+                        a { href: "/#about", "About us" }
+                    }
+                    li {
+                        Link { to: Route::Blog { id: 1 }, "How does it work?" }
+                    }
+                
+                }
+            }
+        }
     }
 }
