@@ -1,13 +1,70 @@
+use daisy_rsx::marketing::benefits;
 use dioxus::prelude::*;
+use dioxus_material_icons::{MaterialIcon, MaterialIconColor};
+
+struct Benefit {
+    icon: &'static str,
+    description: &'static str,
+    title: &'static str,
+}
 
 #[component]
 pub fn About() -> Element {
+    let howItWorks = [
+                Benefit {
+                        icon: "accessibility",
+                        description: "Bins are more accessible -> increases volume",
+                        title: "Accessibility"
+                },
+                Benefit {
+                        icon: "double_arrow",
+                        description: "It motivates students by gaining immediate value in recycling, or from donating to charity -> increases volume",
+                        title: "Motivation"
+                },
+                Benefit {
+                        icon: "done",
+                        description: "Less clunky than other similar bins (no scanning) -> increases volume",
+                        title: "Ease of use"
+                },
+                Benefit {
+                        icon: "build",
+                        description: "Easy to maintain",
+                        title: "Maintenance"
+                },
+                Benefit {
+                        icon: "attach_money",
+                        description: "Our bins are FREE (yes seriously)! We are backed by the UN.",
+                        title: "Cost"
+                }
+        ];
+    let benefits = [
+                Benefit {
+                        icon: "eco",
+                        description: "You make your campus more sustainable, and associate your campus with sustainable practices",
+                        title: "Sustainability"
+                },
+                Benefit {
+                        icon: "volunteer_activism",
+                        description: "It encourages youth led sustainability programs (volunteering and leadership).",
+                        title: "Youth Leadership"
+                },
+                Benefit {
+                        icon: "recycling",
+                        description: "By ordering a bin, you are taking plastic out of the would-be landfill - each bin is made of recycled, rerecycled plastic.",
+                        title: "Environmental impact"   
+                },
+                Benefit {
+                        icon: "clean_hands",
+                        description: " Cleans the means of production",
+                        title: "Supply chain impact"
+                }
+];
     rsx! {
         div { id: "about", class: "w-screen p-[16%]",
                 h2 { class: "text-4xl", "What we do & How it works" }
                 p {
-                        "We build bins that encourage students to recycle. In it's essence, when a student recycles a 10c return n earn can, they get 10c credited to their student account (which could be used to pay for student ammenities like printing or laundry/washing) or instead could get donated to charity. While simple, our solution provides remarkably effective in
-                                                a) Massively increasing recycling volume and b) massively increasing a clean chain of recycling process"
+                        "Our goal is to improve the sustainability across campuses. We do this by building smart bins for 10c cans that immediately credit students' account. This money could be used to pay for student ammenities (like printing or laundry/washing) OR instead could get donated to charity! While simple, our solution provides remarkably effective in
+                                                                                                                                                                        a) Massively increasing recycling volume and b) massively increasing a clean chain of recycling process"
                 
                 // 10 c to student account, pay for student amenities like washing, printing etc
                 // why this works -> motivates students adequately -> higher volume
@@ -23,43 +80,69 @@ pub fn About() -> Element {
                 }
                 br {}
                 br {}
-                div { class: "flex flex-col md:flex-row gap-16",
-                        div {
 
-                                h3 { "Why it works" }
-                                ul { class: "",
-                                        li {
-                                                "Using one or many of our bins make 10c recycling bins more accessible -> increases volume"
-                                        }
-                                        li {
-                                                "It motivates students to recycle because they can either gain immediate value in recycling, or can see an impact in donating to charity -> increases volume"
-                                        }
-                                        li {
-                                                "They are less clunky than other simlar products (no scanning) -> increases volume"
-                                        }
-                                        li { "Easy to maintain " }
-                                        li {
-                                                "Our bins are FREE (yes, we're serious!) for any Australian University or school that makes them (we are funded philanthropically and backed by the United Nations)"
-                                        }
-                                }
-                        }
+                div { class: "my-12",
+                        h2 { class: "my-6", "How does it work?" }
 
-                        div {
-                                h3 { "How it benefits" }
-                                ul { class: "",
-                                        li {
-                                                "You make your campus more sustainable, and associate your campus with sustainable practices"
+                        div { class: "flex flex-row gap-6",
+                                {howItWorks.iter().map(|benefit| rsx! {
+                                        div { class: "card bg-base-100 w-96 shadow-sm",
+
+                                                figure { class: "px-10 pt-10",
+
+                                                        div { class: "bg-gray-200 rounded-2xl w-18 h-18 flex items-center justify-center",
+
+                                                                MaterialIcon { name: benefit.icon, size: 64 }
+                                                        }
+                                                }
+
+                                                div { class: "card-body items-center text-center",
+
+                                                        h2 { class: "card-title", "{benefit.title}" }
+
+                                                        p { "{benefit.description}" }
+
+                                                        div { class: "card-actions",
+
+                                                                button { class: "btn btn-primary", "Learn More" }
+                                                        }
+                                                }
                                         }
-                                        li {
-                                                "It encourages youth led sustainability programs (volunteering and leadership)."
-                                        }
-                                        li {
-                                                "By ordering a bin, you are taking plastic out of the would-be landfill - each bin is made of recycled, rerecycled plastic."
-                                        }
-                                        li { " Cleans the means of production" }
-                                }
+                                })}
                         }
                 }
+
+                div { class: "my-12",
+                        h2 { class: "my-6", "How does it work?" }
+
+                        div { class: "flex flex-row gap-6",
+                                {benefits.iter().map(|benefit| rsx! {
+                                        div { class: "card bg-base-100 w-96 shadow-sm",
+
+                                                figure { class: "px-10 pt-10",
+
+                                                        div { class: "bg-gray-200 rounded-2xl w-18 h-18 flex items-center justify-center",
+
+                                                                MaterialIcon { name: benefit.icon, size: 64 }
+                                                        }
+                                                }
+
+                                                div { class: "card-body items-center text-center",
+
+                                                        h2 { class: "card-title", "{benefit.title}" }
+
+                                                        p { "{benefit.description}" }
+
+                                                        div { class: "card-actions",
+
+                                                                button { class: "btn btn-primary", "Learn More" }
+                                                        }
+                                                }
+                                        }
+                                })}
+                        }
+                }
+        
         }
 
 }

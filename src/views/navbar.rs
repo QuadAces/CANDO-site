@@ -1,5 +1,6 @@
-use crate::{views::Footer, Route};
+use crate::Route;
 use dioxus::prelude::*;
+use dioxus_material_icons::MaterialIcon;
 
 const NAVBAR_CSS: Asset = asset!("/assets/styling/navbar.css");
 
@@ -8,7 +9,7 @@ pub fn Navbar() -> Element {
     rsx! {
         document::Link { rel: "stylesheet", href: NAVBAR_CSS }
 
-        div { class: "drawer",
+        div { class: "drawer drawer-end",
 
             input {
                 id: "nav-drawer",
@@ -22,31 +23,18 @@ pub fn Navbar() -> Element {
                 div { class: "navbar bg-black text-white w-full px-6",
 
                     // Mobile menu button
+
+                    // Logo
+                    div { class: "flex-1 px-2 text-xl font-bold",
+                        Link { to: Route::Home {}, "CANDO" }
+                    }
                     div { class: "flex-none lg:hidden",
                         label {
                             r#for: "nav-drawer",
                             class: "btn btn-square btn-ghost",
                             aria_label: "open sidebar",
-
-                            svg {
-                                xmlns: "http://www.w3.org/2000/svg",
-                                fill: "none",
-                                view_box: "0 0 24 24",
-                                class: "inline-block h-6 w-6 stroke-current",
-
-                                path {
-                                    stroke_linecap: "round",
-                                    stroke_linejoin: "round",
-                                    stroke_width: "2",
-                                    d: "M4 6h16M4 12h16M4 18h16",
-                                }
-                            }
+                            MaterialIcon { name: "menu", size: 24 }
                         }
-                    }
-
-                    // Logo
-                    div { class: "flex-1 px-2 text-xl font-bold",
-                        Link { to: Route::Home {}, "CANDO" }
                     }
 
                     // Desktop menu
@@ -62,10 +50,6 @@ pub fn Navbar() -> Element {
                         }
                     }
                 }
-
-                // Page content
-                Outlet::<Route> {}
-                Footer {}
             }
 
             // Mobile drawer sidebar

@@ -1,8 +1,6 @@
 use daisy_rsx::Button;
 use dioxus::prelude::*;
 
-const HEADER_SVG: Asset = asset!("/assets/header.svg");
-
 #[component]
 pub fn Hero() -> Element {
     rsx! {
@@ -17,7 +15,7 @@ pub fn Hero() -> Element {
                 "We are a Youth Led organisation that motivates students to recycle"
             }
             h3 { class: "text-sm md:text-xl w-4/5 pt-4",
-                "We give 10c Smart Recycling bins to Australian Universities, Colleges and Schools, 100% free"
+                "We give 10c Smart Recycling bins to Australian Universities, Colleges and Schools - 100% free"
             }
 
             div { class: "flex flex-row gap-6 md:gap-12 py-8 w-4/5",

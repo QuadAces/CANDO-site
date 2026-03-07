@@ -4,6 +4,8 @@ use dioxus::prelude::*;
 
 use views::{Blog, Home, Navbar};
 
+use crate::views::Provider;
+
 /// Define a components module that contains all shared components for our app.
 mod components;
 /// Define a views module that contains the UI for all Layouts and Routes for our app.
@@ -19,7 +21,7 @@ mod views;
 enum Route {
     // The layout attribute defines a wrapper for all routes under the layout. Layouts are great for wrapping
     // many routes with a common UI like a navbar.
-    #[layout(Navbar)]
+    #[layout(Provider)]
         // The route attribute defines the URL pattern that a specific route matches. If that pattern matches the URL,
         // the component for that route will be rendered. The component name that is rendered defaults to the variant name.
         #[route("/")]

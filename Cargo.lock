@@ -264,6 +264,7 @@ version = "0.1.0"
 dependencies = [
  "daisy_rsx",
  "dioxus",
+ "dioxus-material-icons",
 ]
 
 [[package]]
@@ -1168,6 +1169,15 @@ dependencies = [
  "tracing",
  "tracing-subscriber",
  "tracing-wasm",
+]
+
+[[package]]
+name = "dioxus-material-icons"
+version = "4.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4cfd9292881c95af20de4c4a783bae4aaef1419f2230108726548a34969439a9"
+dependencies = [
+ "dioxus",
 ]
 
 [[package]]

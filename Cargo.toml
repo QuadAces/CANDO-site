@@ -9,6 +9,7 @@ edition = "2021"
 [dependencies]
 daisy_rsx = "0.1.56"
 dioxus = { version = "0.7.1", features = ["router"] }
+dioxus-material-icons = "4.0.1"
 
 [features]
 default = ["web"]

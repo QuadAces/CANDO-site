@@ -19,3 +19,6 @@ pub use navbar::Navbar;
 
 mod footer;
 pub use footer::Footer;
+
+mod provider;
+pub use provider::Provider;
